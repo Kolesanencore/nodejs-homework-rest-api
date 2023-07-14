@@ -1,19 +1,9 @@
-import express from "express";
-import Joi from "joi";
+import contacts from "../routes/api/contacts-router.js";
+import HttpError from "../helpers/HttpError.js";
 
-import contacts from "../../models/contacts.js";
+import { contactSchema } from "../schemas/contactSchema.js";
 
-import HttpError from "../../helpers/HttpError.js";
-
-const router = express.Router();
-
-const addSchema = Joi.object({
-  name: Joi.string().required(),
-  email: Joi.string().required(),
-  phone: Joi.string().required(),
-});
-
-router.get("/", async (req, res, next) => {
+export const listContacts = async (req, res) => {
   try {
     const result = await contacts.listContacts();
     res.json(result);
@@ -22,9 +12,9 @@ router.get("/", async (req, res, next) => {
       message: error.message,
     });
   }
-});
+};
 
-router.get("/:contactId", async (req, res, next) => {
+export const getContactById = async (req, res, next) => {
   try {
     const { contactId } = req.params;
     const result = await contacts.getContactById(contactId);
@@ -35,11 +25,11 @@ router.get("/:contactId", async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-});
+};
 
-router.post("/", async (req, res, next) => {
+export const addContact = async (req, res, next) => {
   try {
-    const { error } = addSchema.validate(req.body);
+    const { error } = contactSchema.validate(req.body);
     if (error) {
       throw HttpError(400, error.message);
     }
@@ -48,11 +38,11 @@ router.post("/", async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-});
+};
 
-router.put("/:contactId", async (req, res, next) => {
+export const updateContact = async (req, res, next) => {
   try {
-    const { error } = addSchema.validate(req.body);
+    const { error } = contactSchema.validate(req.body);
     if (error) {
       throw HttpError(400, error.message);
     }
@@ -65,9 +55,9 @@ router.put("/:contactId", async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-});
+};
 
-router.delete("/:contactId", async (req, res, next) => {
+export const deleteContact = async (req, res, next) => {
   try {
     const { contactId } = req.params;
     const result = await contacts.removeContact(contactId);
@@ -80,6 +70,12 @@ router.delete("/:contactId", async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-});
+};
 
-export default router;
+export default {
+  listContacts,
+  getContactById,
+  addContact,
+  updateContact,
+  deleteContact,
+};
