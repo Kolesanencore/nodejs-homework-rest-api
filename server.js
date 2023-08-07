@@ -1,10 +1,7 @@
 import mongoose from "mongoose";
-
-import dotenv from "dotenv";
+import "dotenv/config";
 
 import app from "./app.js";
-
-dotenv.config();
 
 const { DB_HOST, PORT } = process.env;
 
@@ -16,5 +13,3 @@ mongoose
     });
   })
   .catch((error) => console.log(error.message));
-
-// uigxoRBomh1TBpof;
