@@ -3,7 +3,9 @@ import logger from "morgan";
 import cors from "cors";
 
 import authRouter from "./routes/api/auth-router.js";
-import contactsRouter from "./routes/api/contacts.js";
+import contactsRouter from "./routes/api/contacts-router.js";
+
+import globalErrorHandler from "./middlewares/globalErrorHandler.js";
 
 const app = express();
 
@@ -20,9 +22,6 @@ app.use((req, res) => {
   res.status(404).json({ message: "Not found" });
 });
 
-app.use((err, req, res, next) => {
-  const { status = 500, message = "Server error" } = err;
-  res.status(status).json({ message });
-});
+app.use(globalErrorHandler);
 
 export default app;

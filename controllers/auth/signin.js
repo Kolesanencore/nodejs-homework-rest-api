@@ -25,9 +25,14 @@ const signin = async (req, res) => {
   };
 
   const token = jwt.sign(payload, JWT_SECRET, { expiresIn: "23h" });
-
+  console.log("Generated token:", token); // Выводим сгенерированный токен
+  await User.findByIdAndUpdate(user._id, { token }); ///////////////
   res.json({
     token,
+    //  user: {
+    //   email: user.email,
+    //   subscription: user.subscription,
+    // },
   });
 };
 

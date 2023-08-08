@@ -12,37 +12,44 @@ import contactsController from "../../controllers/contacts/contacts.js";
 
 import contastsSchemas from "../../schemas/contacts-schemas.js";
 
-const router = express.Router();
+const contactsRouter = express.Router();
 
-router.use(authenticate);
+contactsRouter.get("/", contactsController.getAll);
 
-router.get("/", contactsController.getAll);
+contactsRouter.get("/:contactId", isValidId, contactsController.getById);
 
-router.get("/:contactId", isValidId, contactsController.getById);
-
-router.post(
+contactsRouter.post(
   "/",
+  authenticate,
   isEmptyBody,
   validateBody(contastsSchemas.contactAddSchema),
+
   contactsController.add
 );
 
-router.put(
+contactsRouter.put(
   "/:contactId",
+  authenticate,
   isValidId,
   isEmptyBody,
   validateBody(contastsSchemas.contactAddSchema),
   contactsController.updateById
 );
 
-router.patch(
+contactsRouter.patch(
   "/:contactId/favorite",
+  authenticate,
   isValidId,
   isEmptyBody,
   validateBody(contastsSchemas.contactUpdateFavoriteSchema),
   contactsController.updateFavorite
 );
 
-router.delete("/:contactId", isValidId, contactsController.deleteById);
+contactsRouter.delete(
+  "/:contactId",
+  authenticate,
+  isValidId,
+  contactsController.deleteById
+);
 
-export default router;
+export default contactsRouter;
