@@ -28,16 +28,14 @@ const userSchema = new Schema(
     },
     token: {
       type: String,
-      default: null,
+      default: "",
     },
   },
   { versionKey: false, timestamps: true }
 );
 
 userSchema.pre("findOneAndUpdate", handleUpdateValidate);
-
 userSchema.post("save", handleSaveError);
-
 userSchema.post("findOneAndUpdate", handleSaveError);
 
 const User = model("user", userSchema);

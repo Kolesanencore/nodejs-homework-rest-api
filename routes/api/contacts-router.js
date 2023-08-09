@@ -14,9 +14,14 @@ import contastsSchemas from "../../schemas/contacts-schemas.js";
 
 const contactsRouter = express.Router();
 
-contactsRouter.get("/", contactsController.getAll);
+contactsRouter.get("/", authenticate, contactsController.getAll);
 
-contactsRouter.get("/:contactId", isValidId, contactsController.getById);
+contactsRouter.get(
+  "/:contactId",
+  authenticate,
+  isValidId,
+  contactsController.getById
+);
 
 contactsRouter.post(
   "/",

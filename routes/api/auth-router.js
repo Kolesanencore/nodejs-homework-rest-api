@@ -1,6 +1,6 @@
 import express from "express";
 
-import authControllers from "../../controllers/auth/auth.js";
+import authController from "../../controllers/auth/auth.js";
 
 import usersSchemas from "../../schemas/users-schemas.js";
 
@@ -13,17 +13,17 @@ const authRouter = express.Router();
 authRouter.post(
   "/register",
   validateBody(usersSchemas.userSignupSchema),
-  authControllers.signup
+  authController.signup
 );
 
 authRouter.post(
   "/login",
   validateBody(usersSchemas.userSigninSchema),
-  authControllers.signin
+  authController.signin
 );
 
-authRouter.get("/current", authenticate, authControllers.getCurrent);
+authRouter.get("/current", authenticate, authController.getCurrent);
 
-authRouter.post("/signout", authenticate, authControllers.signout);
+authRouter.post("/signout", authenticate, authController.signout);
 
 export default authRouter;

@@ -29,9 +29,7 @@ const contactShema = new Schema(
 );
 
 contactShema.pre("findOneAndUpdate", handleUpdateValidate);
-
 contactShema.post("save", handleSaveError);
-
 contactShema.post("findOneAndUpdate", handleSaveError);
 
 const Contact = model("contact", contactShema);
