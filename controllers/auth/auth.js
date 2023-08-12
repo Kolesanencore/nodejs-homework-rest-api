@@ -6,4 +6,5 @@ export default {
   signin: ctrlWrapper(authController.signin),
   getCurrent: ctrlWrapper(authController.getCurrent),
   signout: ctrlWrapper(authController.signout),
+  updateAvatar: ctrlWrapper(authController.updateAvatar),
 };
