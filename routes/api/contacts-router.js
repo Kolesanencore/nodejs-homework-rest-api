@@ -28,7 +28,6 @@ contactsRouter.post(
   authenticate,
   isEmptyBody,
   validateBody(contastsSchemas.contactAddSchema),
-
   contactsController.add
 );
 
