@@ -18,6 +18,7 @@ const userSchema = new Schema(
     },
     password: {
       type: String,
+      minlength: 6,
       required: [true, "Password is required"],
     },
 
@@ -27,6 +28,13 @@ const userSchema = new Schema(
       default: "starter",
     },
     avatarURL: {
+      type: String,
+    },
+    verify: {
+      type: Boolean,
+      default: false,
+    },
+    verificationToken: {
       type: String,
     },
     token: {

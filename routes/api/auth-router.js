@@ -11,9 +11,17 @@ import { authenticate, upload } from "../../middlewares/index.js";
 const authRouter = express.Router();
 
 authRouter.post(
-  "/register",
+  "/signup",
   validateBody(usersSchemas.userSignupSchema),
   authController.signup
+);
+
+authRouter.get("/verify/:verificationToken", authController.verifyEmail);
+
+authRouter.post(
+  "/verify",
+  validateBody(usersSchemas.userEmailSchema),
+  authController.resendVerifyEmail
 );
 
 authRouter.post(
