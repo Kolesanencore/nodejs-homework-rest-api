@@ -2,7 +2,7 @@ import Contact from "../../models/contacts.js";
 
 import { HttpError } from "../../helpers/index.js";
 
-const updateById = async (req, res) => {
+const updateContactById = async (req, res) => {
   const { contactId } = req.params;
   const result = await Contact.findByIdAndUpdate(contactId, req.body, {
     new: true,
@@ -13,4 +13,4 @@ const updateById = async (req, res) => {
   res.json(result);
 };
 
-export default updateById;
+export default updateContactById;
