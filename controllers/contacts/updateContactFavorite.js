@@ -2,7 +2,7 @@ import Contact from "../../models/contacts.js";
 
 import { HttpError } from "../../helpers/index.js";
 
-const updateFavorite = async (req, res) => {
+const updateContactFavorite = async (req, res) => {
   const { contactId } = req.params;
   const result = await Contact.findByIdAndUpdate(contactId, req.body, {
     new: true,
@@ -13,4 +13,4 @@ const updateFavorite = async (req, res) => {
   res.json(result);
 };
 
-export default updateFavorite;
+export default updateContactFavorite;

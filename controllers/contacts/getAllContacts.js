@@ -1,6 +1,6 @@
 import Contact from "../../models/contacts.js";
 
-const getAll = async (req, res) => {
+const getAllContacts = async (req, res) => {
   const { _id: owner } = req.user;
   const { page = 1, limit = 20, ...query } = req.query;
   const skip = (page - 1) * limit;
@@ -11,4 +11,4 @@ const getAll = async (req, res) => {
   res.json(result);
 };
 
-export default getAll;
+export default getAllContacts;

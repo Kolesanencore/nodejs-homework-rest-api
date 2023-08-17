@@ -1,6 +1,6 @@
-export { default as add } from "./add.js";
-export { default as getAll } from "./getAll.js";
-export { default as getById } from "./getById.js";
-export { default as updateById } from "./updateById.js";
-export { default as deleteById } from "./deleteById.js";
-export { default as updateFavorite } from "./updateFavorite.js";
+export { default as addContact } from "./addContact.js";
+export { default as getAllContacts } from "./getAllContacts.js";
+export { default as getContactById } from "./getContactById.js";
+export { default as updateContactById } from "./updateContactById.js";
+export { default as deleteContactById } from "./deleteContactById.js";
+export { default as updateContactFavorite } from "./updateContactFavorite.js";

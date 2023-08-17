@@ -14,13 +14,13 @@ import contastsSchemas from "../../schemas/contacts-schemas.js";
 
 const contactsRouter = express.Router();
 
-contactsRouter.get("/", authenticate, contactsController.getAll);
+contactsRouter.get("/", authenticate, contactsController.getAllContacts);
 
 contactsRouter.get(
   "/:contactId",
   authenticate,
   isValidId,
-  contactsController.getById
+  contactsController.getContactById
 );
 
 contactsRouter.post(
@@ -28,7 +28,7 @@ contactsRouter.post(
   authenticate,
   isEmptyBody,
   validateBody(contastsSchemas.contactAddSchema),
-  contactsController.add
+  contactsController.addContact
 );
 
 contactsRouter.put(
@@ -37,7 +37,7 @@ contactsRouter.put(
   isValidId,
   isEmptyBody,
   validateBody(contastsSchemas.contactAddSchema),
-  contactsController.updateById
+  contactsController.updateContactById
 );
 
 contactsRouter.patch(
@@ -46,14 +46,14 @@ contactsRouter.patch(
   isValidId,
   isEmptyBody,
   validateBody(contastsSchemas.contactUpdateFavoriteSchema),
-  contactsController.updateFavorite
+  contactsController.updateContactFavorite
 );
 
 contactsRouter.delete(
   "/:contactId",
   authenticate,
   isValidId,
-  contactsController.deleteById
+  contactsController.deleteContactById
 );
 
 export default contactsRouter;
